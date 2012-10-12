@@ -1,0 +1,12 @@
+<?php
+//Written by Tom-Michael Hesse, 2011, for LOD2-DGINFSO project
+
+if(isset($_POST['tablename']) && isset($_POST['tablehead']) && isset($_POST['tabledata'])) {
+    
+    header('Content-Type: application/force-download');
+    header('Content-disposition: attachment; filename='.$_POST['tablename'].'.csv');
+    
+    print $_POST['tablehead'];
+    print $_POST['tabledata'];
+}
+?>

@@ -1,0 +1,83 @@
+body {
+    padding-bottom:0em;
+    margin-bottom:0em;
+}
+
+
+.page_margins {
+    padding-bottom:2em;
+    margin-bottom:0em;
+}
+
+h1 {
+    font-size:1.8em;
+    line-height:1;
+    padding-bottom:0.35em;
+    padding-top:1.775em;
+    text-transform:uppercase;
+    color:#000000;
+    font-weight:bold;
+}
+
+h2 {
+    font-size:1.4em;
+}
+
+#swstack a:after {
+    content:'';
+}
+
+#swstack address {
+    font-size:0.9em;
+    color:#555;
+    margin:3em 0;
+}
+
+#swstack table {
+    width:100%;
+    color:#333;
+    cell-spacing:0;
+    border-collapse:collapse;
+    text-align:left;
+}
+
+#swstack td, #swstack th {
+    padding:0.25em 0.5em;
+    vertical-align:top;
+    border-bottom:dotted 1px #B5B6B7;
+}
+
+#swstack th {
+    background-color:#E1F0F7;
+    color:#000;
+    border-bottom-style:solid;
+}
+
+#swstack td {
+    font-weight:normal;
+    text-align:left;
+}
+
+#swstack tr > th:first-child {
+    width:1em;
+}
+
+#swstack table img {
+    vertical-align:texttop;
+    height:1.25em;
+}
+
+@media print
+{
+.Page { page-break-after: always; }
+@page {
+size: landscape
+margin: 10%;
+}
+}
+
+
+{
+.hidetable {
+    display: none;
+}

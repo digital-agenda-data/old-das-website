@@ -1,0 +1,742 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>INFSO Chart Scenario</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
+    <script src="js/highcharts.js" type="text/javascript"></script>
+    <script src="js/modules/exporting.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="http://lod2.eu/extensions/site/sites/lod2/css/styleimports.css" media="all" title="Standard" />
+    <style type="text/css">
+    #swstack h1
+    {
+        font-size:1.2em;
+        line-height:1;
+        padding-bottom:0.35em;
+        padding-top:1.775em;
+        text-transform:uppercase;
+        color:#000000;
+        font-weight:bold;
+    }
+    #swstack a:after
+    {
+        content:'';
+    }
+    #swstack address
+    {
+        font-size:0.9em;
+        color:#555;
+        margin:3em 0;
+    }
+    #swstack table
+    {
+        width:100%;
+        color:#333;
+        cell-spacing:0;
+        border-collapse:collapse;
+        text-align:left;
+    }
+    #swstack td, #swstack th
+    {
+        padding:0.25em 0.5em;
+        vertical-align:top;root
+        border-bottom:dotted 1px #B5B6B7;
+    }
+    #swstack th
+    {
+        background-color:#E1F0F7;
+        color:#000;
+        border-bottom-style:solid;
+    }
+    #swstack td
+    {
+        font-weight:normal;
+        text-align:left;
+    }
+    #swstack tr > th:first-child
+    {
+        width:1em;
+    }
+    #swstack table img
+    {
+        vertical-align:texttop;
+        height:1.25em;
+    }
+    </style>
+    <!--[if lte IE 6]><link rel="stylesheet" type="text/css" href="http://lod2.eu/extensions/site/sites/lod2/css/patches/ie6.css" media="all" /><![endif]-->
+    <title>PUBLINK DG INFSO</title>
+    </head>
+<body>
+
+  <div class="page_margins">
+    <div class="page" about="http://lod2.eu/Welcome">
+      <div id="header">
+        <h1 id="logo">
+            <a href="http://lod2.eu/Welcome.html">
+                <span><abbr title="Linked Open Data">LOD</abbr>2</span> <strong>Creating Knowledge out of Interlinked Data</strong>
+            </a>
+        </h1> <!-- /#logo -->
+        <div id="topnav">
+            <ul>
+                <li><a href="http://lod2.eu/WikiArticle/Contact.html">Contact</a></li>
+                <li><a href="http://lod2.eu/Article/Imprint.html">Imprint</a></li>
+            </ul>
+        </div> <!-- /#topnav -->
+      </div>
+
+      <hr class="hideme" />
+
+      <div id="main">
+        <div id="col1">
+          <div id="col1_content" class="clearfix">
+            <!-- add your content here -->
+
+<div id="swstack" class="section">
+
+<?php
+
+//Written by Tom-Michael Hesse, 2011, for LOD2-DGINFSO project
+
+//scenario preselection
+if(!isset($_GET['scenario'])) $_GET['scenario']=1;
+
+//major database access object
+#$db=new PDO('mysql:host=localhost;dbname=scoreboard','infso','xCcJMCrZGbFyV6mh');
+$db=new PDO('mysql:host=localhost;dbname=dginfso','root','root');
+
+//function block for visual "components"
+//WARNING: external $_GETs MUST be set due to quick hack
+function selectIndicator($db) {
+
+    $indicatorSelector = '';
+    $indicatorSelector .= '<select name="indicator" size="8" onchange="this.form.submit()" style="width:100%">';
+    foreach ($db->query('SELECT DISTINCT variable, caption FROM indicators ORDER BY variable') as $row) {
+       if(!isset($_GET['indicator'])) $_GET['indicator']=$row[0];
+       $indicatorSelector .= ' <option value="'.$row[0].'" '.($_GET['indicator']==$row[0] ? 'selected="selected"':'').'>'.$row[1].'</option>';
+    }
+    $indicatorSelector .= '</select>';
+    return $indicatorSelector;
+}
+
+function selectIndicators($db, $preselect, $maxselect) {
+    
+    $indicators = array();
+    $indicatorsSelector = '';
+    
+    $indicatorsAll = array();
+    $indicatorsRandom = array();
+    
+    if(!isset($_GET['indicators'])) $_GET['indicators'] = array("preselect"=>"preselect");
+    
+    foreach($db->query('SELECT DISTINCT variable, unit, shortlabel FROM indicators ORDER BY variable') as $row) {
+        $indicatorsAll[$row[0]][$row[1]] = $row[2];
+        $indicatorsRandom[$row[0]] = $row[2];
+    }
+    if(in_array('preselect', $_GET['indicators']) && $preselect > 0) {
+        $target = array_rand($indicatorsRandom, $preselect);
+        if(count($target)==1) {
+            $target = array(0=>$target);
+            $_GET['indicators'] = array();
+        }
+        $_GET['indicators'] = array_merge($_GET['indicators'], $target);
+    }
+    $select = 0;
+    if($maxselect == 0) $maxselect = count($indicatorsAll, 1);
+    foreach($indicatorsAll as $indicator=>$iset) {
+        foreach($iset as $unit=>$label) {
+            $check = false;
+            if(in_array("preselect", $_GET['indicators']) && $preselect==-1 && $select < $maxselect) $check = true;
+            if(in_array($indicator, $_GET['indicators']) && $select < $maxselect) $check = true;
+            $indicatorsSelector .= '<input type="checkbox" name="indicators[]" value="'.$indicator.'" onchange="this.form.submit()" '.($check ? ' checked="checked"' : '').'>&nbsp;'.$label.'<br>';
+            if($check) {
+                $indicators[$indicator][$unit] = $label;
+                $select++;
+            }
+        }
+    }
+    return array ('indicators' => $indicators, 'indicatorsSelector' => $indicatorsSelector);
+}
+
+function selectYear($db, $indicators) {
+
+    $years = array();
+    $yearSelector = '';
+    $indicators = '("'.implode('","', $indicators).'")';
+    $noindicator = "";
+    
+    foreach ($db->query('SELECT DISTINCT year FROM data '.($noindicator ? '' : 'WHERE variable IN '.$indicators.' ').'ORDER BY year DESC') as $row) {
+       $years[$row[0]] = $row[0];
+    }
+    if (!empty($_GET['year'])) {
+        if(!in_array($_GET['year'], $years)) unset($_GET['year']);
+    }
+    foreach($years as $row) {
+       if(!isset($_GET['year'])) $_GET['year'] = $row;
+       $yearSelector .= '<nobr><input type="radio" name="year" value="'.$row.'" '.($_GET['year']==$row ? 'checked="checked"':'').' onchange="this.form.submit()" />&nbsp;'.$row.'&nbsp;&nbsp;</nobr> ';
+    }
+    return $yearSelector;
+}
+
+function selectCountries($db, $preselect, $noyear, $multiple, $falselist) {
+    
+    $countriesall = array();
+    $countries = array();
+
+    $countrySelector = "";
+    
+    $notin = "";
+    
+    if(isset($falselist)) {
+        $notin = 'NOT (code IN ("'.implode('","', $falselist).'"))';
+    }
+
+    //hack: $preselect-value is overwritten with change in form
+    if(!isset($_GET['countries'])) $_GET['countries'] = array('preselect'=>'preselect');
+    foreach ($db->query('SELECT DISTINCT code, caption FROM countries '.(!$noyear || $notin ? 'WHERE ' : '').($noyear == false ? 'year = '.$_GET['year'] : '').(!$noyear && $notin ? ' AND ' : '').$notin.' ORDER BY caption ASC') as $row) {
+        $countriesall[$row[0]] = $row[1];
+    }
+    //randomly select countries if preselect > 0
+    if(in_array('preselect', $_GET['countries']) && $preselect > 0) {
+        $target = array_rand($countriesall, $preselect);
+        if(count($target)==1) {
+            $target = array(0=>$target);
+            $_GET['countries'] = array();
+        }
+        $_GET['countries'] = array_merge($_GET['countries'], $target);
+    }
+    foreach($countriesall as $index=>$value) {
+        $check = false;
+        if(in_array($index, $_GET['countries'])) {
+           $check = true;
+        }
+        if(in_array('preselect',$_GET['countries'])) {
+            if($preselect == -1) $check = true;
+        }
+        $countrySelector .= ' <nobr><input type="'.($multiple == true ? 'checkbox' : 'radio').'" name="countries[]" value="'.$index.'" '.($check == true ? 'checked="checked"' : '').' onchange="this.form.submit()" /> '.$value.' ('.$index.')</nobr>&nbsp;&nbsp;  ';
+        if($check == true) $countries[$index] = $value;
+    }
+    return array('countries' => $countries, 'countrySelector' => $countrySelector);
+}
+
+function selectUnit($db) {
+    
+    $units = array();
+    $unitSelector = "";
+    $unitSelector .= '<select name="unit" size="3" onchange="this.form.submit()" style="width:100%">';
+    foreach($db->query('SELECT unit, longlabel FROM indicators WHERE variable LIKE "'.$_GET['indicator'].'" ORDER BY longlabel') as $row) {
+        $units[$row[0]] = $row[1];
+    }
+    if(!in_array($_GET['unit'], array_keys($units))) unset($_GET['unit']);
+    foreach($units as $index => $value) {
+        if(!isset($_GET['unit'])) $_GET['unit'] = $index;
+        $unitSelector .= '<option value="'.$index.'" '.($_GET['unit'] == $index ? 'selected = "selected"' : '').'>'.$value.'</option>';
+    }
+    $unitSelector .= '</select>' ;
+    return $unitSelector;
+}
+
+//run the scenario
+switch($_GET['scenario']){
+
+    case 1: //bar graph for one indicator over countries/time (one year)
+            //preselected: the first row for each option, all countries
+
+        $indicatorSelector = selectIndicator($db);
+        $yearSelector = selectYear($db, array($_GET['indicator']));
+        $countriesResult = selectCountries($db, -1, false, true, NULL);
+        $countries = $countriesResult['countries'];
+        $countrySelector = $countriesResult['countrySelector'];
+
+
+
+        $form = '
+          <form>
+            <input type="hidden" name="scenario" value="1" />'.
+            '<br><br><h3>Please select one indicator below:</h3>' .
+            $indicatorSelector . 
+            '<br><br><h3>Please select the Year:</h3>' .
+            $yearSelector .
+            '<br><br><h3>Please select the countries to display:</h3>' .
+            $countrySelector .
+            '<br><br><b style = "color:red">(some data might be not recorded)</b>' .
+          '</form><br>';
+
+#        echo ('<form>');
+#        echo ('<input type="hidden" name="scenario" value="1" />');
+#        selectIndicator($db);
+#        selectYear($db);
+#        $countries = selectCountries($db, -1, false);
+#        echo('</form><br><hr width=100%/><br>');
+
+        $countrystr = '("'.implode('","', array_keys($countries)).'")';
+
+        $dataresult = $db->query('SELECT DISTINCT country, value, unit, note FROM data WHERE variable LIKE "'.$_GET['indicator'].'" AND year = '.$_GET['year'].' AND country IN '.$countrystr.' ORDER BY value DESC');
+        $dataresult2 = $db->query('SELECT DISTINCT variable, unit, longlabel FROM indicators WHERE variable LIKE "'.$_GET['indicator'].'"');
+        
+        //set of needed variables for processing the data
+        $dataset = array();
+        $series = array();
+        $units = array();
+        $indexhelper = array();
+        $percentage = false;
+        
+        //catch up all datasets
+        foreach ($dataresult as $row) {
+            //leave out n.a.-statements
+            if(!($row[3]=="N.a")) $dataset[$row[0]][$row[2]] = $row[1];
+        }
+        
+        //catch up all units
+        foreach($dataresult2 as $row) {
+            $units[$row[1]] = $row[2];
+            $percentage = (strpos($row[1], '%') === false ? false : true); //find out whether values are in % --> cap of scale at 100 and multiply values with 100
+        }
+        
+        //create series for the bar chart
+        foreach($dataset as $index=>$row) { //quickhack: sort all data with focus on established sort order on ONE unit
+            if(!isset($indexhelper[$index])) {
+                foreach(array_keys($units) as $unit) {
+                    if(!isset($series[$unit])) $series[$unit] = "{name: '".addslashes($units[$unit])."', data: [";
+                    $series[$unit] = $series[$unit].($percentage ? $dataset[$index][$unit]*100 : $dataset[$index][$unit]).",";
+                }
+            }
+            $indexhelper[$index] = $countries[$index];
+        }
+        
+        //labels for xAxis: show full country names only for 11 countries and less due to missing space (note: save only for 9 countries and less)
+        $categories = implode("','", (count(array_keys($indexhelper))>=12 ? array_keys($indexhelper) : array_values($indexhelper)));
+
+        $finaldata ="[";
+        foreach($series as $row) {
+            $finaldata = $finaldata.substr($row, 0, strlen($row)-1)."]},";
+        }
+        $finaldata = substr($finaldata, 0, strlen($finaldata)-1)."]";
+
+        echo("
+        <script type=\"text/javascript\">
+
+			var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'column'
+					},
+                                        credits: {
+                                                href: 'http://scoreboard.lod2.eu/',
+                                                text: '(c) European Commission Digital Agenda Scoreboard'
+                                        },
+					title: {
+						text: 'Indicator ".strtoupper($_GET['indicator'])." of the year ".$_GET['year']."'
+					},
+					xAxis: {
+						categories: ['".$categories."']
+					},
+					yAxis: {
+						min: 0,
+                                                ".($percentage ? 'max: 100,' : '')."
+						title: {
+							text: 'Indicator value".(count($units) == 1 ? ': '.current(array_keys($units)) : '')."'
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						backgroundColor: '#FFFFFF',
+						align: 'left',
+						verticalAlign: 'top',
+						x: 100,
+						y: 70,
+						floating: true,
+						shadow: true
+					},
+					tooltip: {
+						formatter: function() {
+							return ''+
+								this.x +': '+ this.y;
+						}
+					},
+					plotOptions: {
+						column: {
+							pointPadding: 0.2,
+							borderWidth: 0
+						}
+					},
+				        series: ".$finaldata."
+				});
+
+
+			});
+
+		</script>");
+        echo ('<div id="container" style="width: 100%; height: 600px"></div>');
+        break;
+
+    case 2: //line graph for one indicator over countries/time (2002 - 2010)
+            //preselected: the first row for each option, six countries
+
+        $indicatorSelector = selectIndicator($db);
+        $unitSelector = selectUnit($db);
+        $countriesResult = selectCountries($db, 6, true, true, NULL);
+        $countries = $countriesResult['countries'];
+        $countrySelector = $countriesResult['countrySelector'];
+
+        $form = '
+          <form>
+            <input type="hidden" name="scenario" value="2" />'.
+            '<br><br><h3>Please select one indicator below:</h3>' .
+            $indicatorSelector . 
+            '<br><br><h3>Please select the unit:</h3>' .
+            $unitSelector .
+            '<br><br><h3>Please select the countries to display:</h3>' .
+            $countrySelector .
+            '<br><br><b style = "color:red">(some data might be not recorded)</b>' .
+          '</form><br>';
+
+        $countrystr = '("'.implode('","', array_keys($countries)).'")';
+        $dataset = array();
+        $years = array();
+        $series = array();
+
+        $percentage = (strpos($_GET['unit'], '%') === false ? false : true); //find out whether values are in % --> cap of scale at 100 and multiply values with 100
+
+        $dataresult = $db->query('SELECT DISTINCT year, country, value, note FROM data WHERE variable LIKE "'.$_GET['indicator'].'" AND country IN '.$countrystr.' AND unit LIKE "'.$_GET['unit'].'" ORDER BY year ASC');
+        
+        //create series for timeline and categories (years)
+	  //data style is now: [x, y]
+        foreach($dataresult as $row) {
+            $years[$row[0]] = $row[0];
+            if(!isset($series[$row[1]])) $series[$row[1]] = "{name: '".addslashes($countries[$row[1]])."', data: [";
+            //leave out n.a.-statements
+            if(!($row[3]=="N.a"))
+                $series[$row[1]] = $series[$row[1]]."[".$row[0].", ".($percentage == true ? $row[2]*100 : $row[2])."],";
+        }
+
+        $finaldata = "[";
+        foreach($series as $index=>$value) {
+            $finaldata = $finaldata.substr($value,0, strlen($value)-1)."]},";
+        }
+
+        $finaldata = substr($finaldata,0, strlen($finaldata)-1)."]";
+        $categories = "['".implode("','", $years)."']";
+
+        echo("<script type=\"text/javascript\">
+
+			var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container',
+						defaultSeriesType: 'line',
+						marginRight: 130,
+						marginBottom: 25
+					},
+                                        credits: {
+                                                href: 'http://scoreboard.lod2.eu/',
+                                                text: '(c) European Commission Digital Agenda Scoreboard'
+                                        },
+					title: {
+						text: 'Indicator ".strtoupper($_GET['indicator'])."',
+						x: -20 //center
+					},
+					xAxis: {
+						categories: ".$categories."
+					},
+					yAxis: {
+						title: {
+							text: 'Indicator value: ".$_GET['unit']."'
+						},
+                                                min: 0,
+                                                ".($percentage == true ? 'max: 100,': '')."
+						plotLines: [{
+							value: 0,
+							width: 1,
+							color: '#808080'
+						}]
+					},
+					tooltip: {
+						formatter: function() {
+				                return '<b>'+ this.series.name +'</b><br/>'+
+								this.x +': '+ this.y +' ".$_GET['unit']."';
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'right',
+						verticalAlign: 'top',
+						x: -10,
+						y: 100,
+						borderWidth: 0
+					},
+					series: ".$finaldata."
+				});
+
+
+			});
+		</script>");
+        echo ('<div id="container" style="width: 100%; height: 600px"></div>');
+        break;
+        
+    case 3: //two indicators for the selected countries in one year
+            //preselected: two indicators and three countries, the first year
+        
+        $indicatorsResult = selectIndicators($db, 2, 2);
+        $indicators = $indicatorsResult['indicators'];
+        $indicatorsSelector = $indicatorsResult['indicatorsSelector'];
+        $yearSelector = selectYear($db, array_keys($indicators));
+        $countriesResult = selectCountries($db, 10, true, true, array("EA", "EU15", "EU16", "EU25"));
+        $countries = $countriesResult['countries'];
+        $countrySelector = $countriesResult['countrySelector'];
+        
+        $form = '
+          <form>
+            <input type="hidden" name="scenario" value="3" />'.
+            '<br><br><h3>Please select the two indicators to display:</h3>' .
+            $indicatorsSelector . 
+            '<br><br><h3>Please select the year:</h3>' .
+            $yearSelector .
+            '<br><br><h3>Please select the country to display:</h3>' .
+            $countrySelector .
+            '<br><br><b style = "color:red">(some data might be not recorded)</b>' .
+          '</form><br>';
+        
+        $variables = '("'.implode('","', array_keys($indicators)).'")';
+        $countrycodes = '("'.implode('","', array_keys($countries)).'")';
+        
+        $dataresult = $db->query('SELECT variable, unit, country, value FROM data WHERE variable IN '.$variables.' AND country IN '.$countrycodes.' AND year = '.$_GET['year'].' ORDER BY variable, unit ASC');
+        
+        $dataset = array();
+        $points = array();
+        $labels = array();
+        
+        foreach($dataresult as $row) {
+            $dataset[$row[0]][$row[1]][$row[2]] = (strpos($row[1], '%') === false ? $row[3] : $row[3]*100);
+        }
+        
+        foreach($dataset as $variable=>$varset) {
+            foreach($varset as $unit=>$countryset) {
+                //sort values and set them
+                asort($countryset);
+                $dataset[$variable][$unit] = $countryset;
+                $labels[(!isset($labels['x']) ? 'x' : 'y')] = $indicators[$variable][$unit];
+                $labels[(!isset($labels['xind']) ? 'xind' : 'yind')] = $variable;
+                $labels[(!isset($labels['xunit']) ? 'xunit' : 'yunit')] = $unit;
+                foreach($countryset as $country=>$value) {
+                    if(!isset($points[$country])) $points[$country] = "[".$value;
+                    else $points[$country] .= ",".$value."]";
+                }                
+            }
+        }
+        
+        $series ="[";
+        foreach($points as $country=>$point) {
+            if(substr_count($point, '[')>0 && substr_count($point, ']') > 0)
+                $series .= "{name: '".(count($points)<11 ? $countries[$country] : $country)."', data: [".$point."]},";
+        }
+        $series = substr($series, 0, strlen($series)-1)."]";
+        echo("
+        <script type=\"text/javascript\">
+		
+			var chart;
+			$(document).ready(function() {
+				chart = new Highcharts.Chart({
+					chart: {
+						renderTo: 'container', 
+						defaultSeriesType: 'scatter',
+						zoomType: 'xy'
+					},
+                                        credits: {
+                                                href: 'http://scoreboard.lod2.eu/',
+                                                text: '(c) European Commission Digital Agenda Scoreboard'
+                                        },
+					title: {
+						text: '<b>".strtoupper($labels['xind'])."</b> versus <b>".strtoupper($labels['yind'])."</b>'
+					},
+					subtitle: {
+						text: 'Year ".$_GET['year']."'
+					},
+					xAxis: {
+						title: {
+							enabled: true,
+							text: '".$labels['x']."'
+						},
+						startOnTick: true,
+						endOnTick: true,
+						showLastLabel: true
+					},
+					yAxis: {
+						title: {
+							text: '".$labels['y']."'
+						},
+                                                min: 0
+					},
+					tooltip: {
+						formatter: function() {
+				                return '<b>'+ this.series.name +'</b><br/>'+
+								this.x +' ".$labels['xunit']." ,<br>'+ this.y +' ".$labels['yunit']."';
+						}
+					},
+					legend: {
+						layout: 'vertical',
+						align: 'left',
+						verticalAlign: 'top',
+						x: 100,
+						y: 70,
+						floating: true,
+						backgroundColor: '#FFFFFF',
+						borderWidth: 1
+					},
+					plotOptions: {
+						scatter: {
+							marker: {
+								radius: 5,
+								states: {
+									hover: {
+										enabled: true,
+										lineColor: 'rgb(100,100,100)'
+									}
+								}
+							},
+							states: {
+								hover: {
+									marker: {
+										enabled: false
+									}
+								}
+							}
+						}
+					},
+					series: ".$series."
+				});
+				
+				
+			});
+				
+		</script>");
+        
+        echo ('<div id="container" style="width: 100%; height: 600px"></div>');
+        
+        break;
+    case 4: //the country profile for one country over the indicators in one year
+            //preselected: the row for each option, six indicators
+        
+        $indicatorsResult = selectIndicators($db, -1, 0);
+        $indicators = $indicatorsResult['indicators'];
+        $indicatorsSelector = $indicatorsResult['indicatorsSelector'];
+        $yearSelector = selectYear($db, array_keys($indicators));
+        $countriesResult = selectCountries($db, 1, false, false, array("EU27", "EA", "EU15", "EU16", "EU25"));
+        $countries = $countriesResult['countries'];
+        $countrySelector = $countriesResult['countrySelector'];       
+        
+        $form = '
+          <form>
+            <input type="hidden" name="scenario" value="4" />'.
+            '<br><br><h3>Please select the indicators to display:</h3>' .
+            $indicatorsSelector . 
+            '<br><br><h3>Please select the year:</h3>' .
+            $yearSelector .
+            '<br><br><h3>Please select the country to display:</h3>' .
+            $countrySelector .
+            '<br><br><b style = "color:red">(some data might be not recorded)</b>' .
+          '</form><br>';
+        
+        $variables = '("'.implode('","', array_keys($indicators)).'")';
+        
+        $dataresult = $db->query('SELECT DISTINCT variable, unit, country, value FROM data WHERE year = '.$_GET['year'].' AND variable IN '.$variables.' AND NOT (note LIKE "N.a") ORDER BY variable, unit ASC');
+        
+        $dataset = array();
+        $quartile = array();
+        
+        foreach($dataresult as $row) {
+            $dataset[$row[0]][$row[1]][$row[2]] = (strpos($row[1], '%') === false ? $row[3] : $row[3]*100);
+        }
+        
+        $output = '<h3>Country profile for '.$countries[current($_GET['countries'])].' in the year '.$_GET['year'].'</h3><br>';
+        $output .= '<table border="1" width=100%><tr><th width=40%>Indicator (unit)</th><th width=15%>Value in 1st quartile</th><th width=15%>Value in 2nd quartile</th><th width=15%>Value in 3rd quartile</th><th width=15%>Value above 3rd quartile</th></tr>';
+        
+        foreach($dataset as $variable=>$varset) {
+            foreach($varset as $unit=>$countryset) {
+                //sort values and set them
+                asort($countryset);
+                $dataset[$variable][$unit] = $countryset;
+                $n = count($countryset);
+                $set = false;
+                $temp = array_values($countryset);
+                $output .= '<tr><td>'.$indicators[$variable][$unit].' <nobr>('.$unit.')</nobr></td>';
+                for($q = 1; $q<4; $q++) { //calculate quartile
+                    if($n % 2 != 0) $quartile[$variable][$unit][$q] = $temp[ceil($n * ($q * 0.25))];
+                    else $quartile[$variable][$unit][$q] = ($temp[($n * ($q * 0.25))] + $temp[($n * ($q * 0.25))+1]) / 2;
+                    if($countryset[current($_GET['countries'])] <= $quartile[$variable][$unit][$q] && !$set) {
+                        $output .= '<td><center><b>'.$countryset[current($_GET['countries'])].'</b><br>('.$quartile[$variable][$unit][$q].')</center></td>';
+                        $set = true;
+                    }
+                    else
+                        $output .= '<td></td>';
+                }
+                if($countryset[current($_GET['countries'])] > $quartile[$variable][$unit][3] && !$set) {
+                    $output .= '<td><center><b>'.$countryset[current($_GET['countries'])].'</b><br>('.$quartile[$variable][$unit][3].')</center></td>';
+                    $set = true;
+                }
+                else 
+                    $output .= '<td></td>';
+                $output .= '</tr>';
+            }
+        }
+        
+        $output .= '</table>';
+        
+        echo ($output);
+        
+        break;
+    default: //this should never really happen
+        break;
+
+}
+
+
+echo '
+</div>
+          </div> <!-- /#col1_content -->
+        </div> <!-- /#col1 -->
+
+        <hr class="hideme" />
+
+        <div id="col3">
+          <div id="col3_content" class="clearfix sidecontent">
+            <div class="section">
+                <h3>Publink DG INFSO</h3>
+                <div class="section-content">
+                    DG INFSO wants to publish electronically their data in a user accessible fashion. Up to now, this is done on paper, and some excel and access files. This target is part of a bigger goal: the digital agenda of the European Commission which goes public early june 2011.
+<br><br>
+<p style = "border-top:2px dotted #B5B6B7">
+    <a href="index.php?scenario=1">1. Bar chart</a>&nbsp;|&nbsp;
+    <a href="index.php?scenario=2">2. Time-line chart</a>
+<br>
+    <a href="index.php?scenario=3">3. Scatter-plot</a>&nbsp;|&nbsp;
+    <a href="index.php?scenario=4">4. Country profile</a><br>
+</p>
+                </div>
+'.$form.'
+            </div>
+          </div> <!-- /#col3_content -->
+          <!-- IE Column Clearing -->
+          <div id="ie_clearing"> &#160; </div>
+            </div> <!-- /#col3 -->
+          </div>
+
+      <hr class="hideme" />
+
+      <div id="footer">
+        <p class="sublkine">This page is powered by the <a href="http://lod2.eu/WikiArticle/AboutTheWebsite.html">LOD2 stack</a>,
+            <a href="http://www.yaml.de/" title="YAML is an (X)HTML/CSS framework for creating modern and flexible floated layouts."><abbr title="Yet Another Multicolumn Layout">YAML</abbr></a> and
+            <a href="jquery.com" title="jQuery is a fast and concise JavaScript Library that simplifies HTML document traversing, event handling, animating, and Ajax interactions for rapid web development.">jQuery</a>.
+            <a id="sfp-logo" href="#"><span class="hideme">publicly sponsored by Seventh Framework Program</span></a>
+            <a id="eu-logo" href="http://cordis.europa.eu/info-management/"><span class="hideme">co-funded by the European Union</span></a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html> ';
+
+?>

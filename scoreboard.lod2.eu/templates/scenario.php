@@ -3,7 +3,7 @@
            <h2 style="float:left">
                 <?php echo $content['title']; ?>
             </h2>
-            <a href="http://ec.europa.eu/information_society/digital-agenda/scoreboard/index_en.htm" style="">
+            <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
                 <img src="images/hp-eda-logo.jpg" style="width:15em;float:right" />
             </a>
             <div style="clear:both" />
@@ -91,7 +91,7 @@
         <a href="index.php?scenario=4" alt="Country profile">
             <img src = "images/countryprofile.png" style="width:7em; border:0px;"/>
         </a>
-        <a href="http://ec.europa.eu/information_society/digital-agenda/scoreboard/index_en.htm">
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard">
             <img src="images/hp-eda-logo.jpg" style="float:right;"/>
         </a>
     </p>

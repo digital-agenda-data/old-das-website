@@ -1,7 +1,7 @@
 <div id="page">
     <div>
         <h1 style="float:left">LIST OF the SELECTED indicators</h1>
-        <a href="http://ec.europa.eu/information_society/digital-agenda/scoreboard/index_en.htm" style="">
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
             <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em" />
         </a>
         <div style="clear:both" />
@@ -31,7 +31,7 @@
         <a href="index.php?scenario=2" alt="TimeLine-chart Scenario"><img src = "images/timeline.png" style="width:7em; border:0px;"/></a>
         <a href="index.php?scenario=3" alt="Scatter plot"><img src = "images/scatterplott.png" style="width:7em; border:0px;"/></a>
         <a href="index.php?scenario=4" alt="Country profile"><img src = "images/countryprofile.png" style="width:7em; border:0px;"/></a>
-        <a href="http://ec.europa.eu/information_society/digital-agenda/scoreboard/index_en.htm"><img src="images/hp-eda-logo.jpg" style="float:right;"/></a>
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard"><img src="images/hp-eda-logo.jpg" style="float:right;"/></a>
         </p>
       </div>
 

@@ -1,7 +1,7 @@
 <div id="page">
 <div>
     <h1 style="float:left">Exploring the data on your own</h1>
-        <a href="http://ec.europa.eu/information_society/digital-agenda/scoreboard/index_en.htm" style="">
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
             <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em" />
         </a>
 <div style="clear:both" />
@@ -71,8 +71,8 @@
                 <h3>SPARQL Endpoint</h3>
                 <p>
                     The published digital scoreboard RDF data can be queried online via the 
-                    <a href="http://data.lod2.eu/queries/editor/?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F">SPARQL editor</a> (human readable) or 
-                    <a href="http://data.lod2.eu/service/sparql/">SPARQL endpoint </a> (for machines regarding the <a href="http://www.w3.org/TR/rdf-sparql-protocol/">SPARQL protocol for RDF</a>).
+                    <a href="http://scoreboard.edw.ro/ontowiki/index.php/queries/editor?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F">SPARQL editor</a> (human readable) or 
+                    <a href="http://virtuoso.scoreboard.edw.ro/sparql/">SPARQL endpoint </a> (for machines regarding the <a href="http://www.w3.org/TR/rdf-sparql-protocol/">SPARQL protocol for RDF</a>).
                     This SPARQL endpoint offers a public service to the statistical data allowing anyone to build applications based on the most recent
                     data.
                 </p>
@@ -80,16 +80,16 @@
                     Some sample queries are:
                     <ul>
                         <li>Select 20 observations for the indicator "Total number of fixed broadband lines" 
-                            [<a href="http://data.lod2.eu/queries/editor/?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20DISTINCT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_lines_TOTAL_FBB_nbr_lines%20.%0A%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%0A%7D%0ALIMIT%2020">try it</a>] </li>
+                            [<a href="http://scoreboard.edw.ro/ontowiki/index.php/queries/editor?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20DISTINCT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_lines_TOTAL_FBB_nbr_lines%20.%0A%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%0A%7D%0ALIMIT%2020">try it</a>] </li>
                         <li>Select all observations for the indicator "Total number of fixed broadband lines" for the EU27 average 
-                            [<a href="http://data.lod2.eu/queries/editor/?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20DISTINCT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_lines_TOTAL_FBB_nbr_lines%20.%0A%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%0A%20%20%3Fobservation%20prop%3Acountry%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fcountry%2FEuropean%2BUnion%2B-%2B27%2Bcountries%3E%20.%20%20%0A%7D%0ALIMIT%2020%E2%80%8B">try it</a>] </li>
+                            [<a href="http://scoreboard.edw.ro/ontowiki/index.php/queries/editor?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20DISTINCT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_lines_TOTAL_FBB_nbr_lines%20.%0A%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%0A%20%20%3Fobservation%20prop%3Acountry%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fcountry%2FEuropean%2BUnion%2B-%2B27%2Bcountries%3E%20.%20%20%0A%7D%0ALIMIT%2020%E2%80%8B">try it</a>] </li>
                         <li>Select all observations for indicator "Total number of fixed broadband lines" and 
                             indicator "New entrants' share in fixed broadband lines" for the year 2010 
-                            [<a href="http://data.lod2.eu/queries/editor/?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20DISTINCT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%7B%0A%20%20%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_lines_TOTAL_FBB_nbr_lines%20.%0A%20%20%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%0A%20%20%20%20%3Fobservation%20prop%3Ayear%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fyear%2F2010%3E%20.%0A%20%20%7D%0A%20%20UNION%20%0A%20%20%7B%0A%20%20%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_ne_TOTAL_FBB__lines%20.%0A%20%20%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%0A%20%20%20%20%3Fobservation%20prop%3Ayear%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fyear%2F2010%3E%20.%0A%20%20%7D%0A%7D%0ALIMIT%20100%0A%E2%80%8B">try it</a>] </li>
+                            [<a href="http://scoreboard.edw.ro/ontowiki/index.php/queries/editor?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20DISTINCT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%7B%0A%20%20%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_lines_TOTAL_FBB_nbr_lines%20.%0A%20%20%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%0A%20%20%20%20%3Fobservation%20prop%3Ayear%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fyear%2F2010%3E%20.%0A%20%20%7D%0A%20%20UNION%20%0A%20%20%7B%0A%20%20%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%20%20%3Fobservation%20prop%3Aindicator%20ind%3Abb_ne_TOTAL_FBB__lines%20.%0A%20%20%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%0A%20%20%20%20%3Fobservation%20prop%3Ayear%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fyear%2F2010%3E%20.%0A%20%20%7D%0A%7D%0ALIMIT%20100%0A%E2%80%8B">try it</a>] </li>
                         <li>Select all observations for the country Belgium for the year 2010 
-                            [<a href="http://data.lod2.eu/queries/editor/?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%3Fobservation%20prop%3Ayear%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fyear%2F2010%3E%20.%20%0A%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%20%0A%20%20%3Fobservation%20prop%3Acountry%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fcountry%2FBelgium%3E%20.%20%20%0A%7D%0ALIMIT%20100%E2%80%8B">try it</a>] </li>
+                            [<a href="http://scoreboard.edw.ro/ontowiki/index.php/queries/editor?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F&immediate=true&query=SELECT%20%3Fobservation%20%3Fvalue%0AFROM%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F%3E%20%0AWHERE%20%7B%20%0A%20%20%3Fobservation%20a%20%3Chttp%3A%2F%2Fpurl.org%2Flinked-data%2Fcube%23Observation%3E%20.%0A%20%20%3Fobservation%20prop%3Ayear%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fyear%2F2010%3E%20.%20%0A%20%20%3Fobservation%20prop%3Avalue%20%3Fvalue%20.%20%0A%20%20%3Fobservation%20prop%3Acountry%20%3Chttp%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2Fcountry%2FBelgium%3E%20.%20%20%0A%7D%0ALIMIT%20100%E2%80%8B">try it</a>] </li>
                     </ul>
-                    The data can also be browsed via the <a href="http://data.lod2.eu/?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F">OntoWiki tool</a>.
+                    The data can also be browsed via the <a href="http://scoreboard.edw.ro/ontowiki/index.php?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F">OntoWiki tool</a>.
                 </p>
             </div>
         </div>
@@ -102,7 +102,7 @@
         <a href="index.php?scenario=2" alt="TimeLine-chart Scenario"><img src = "images/timeline.png" style="width:7em; border:0px;"/></a>
         <a href="index.php?scenario=3" alt="Scatter plot"><img src = "images/scatterplott.png" style="width:7em; border:0px;"/></a>
         <a href="index.php?scenario=4" alt="Country profile"><img src = "images/countryprofile.png" style="width:7em; border:0px;"/></a>
-        <a href="http://ec.europa.eu/information_society/digital-agenda/scoreboard/index_en.htm"><img src="images/hp-eda-logo.jpg" style="float:right;"/></a>
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard"><img src="images/hp-eda-logo.jpg" style="float:right;"/></a>
         </p>
       </div>
 </div>

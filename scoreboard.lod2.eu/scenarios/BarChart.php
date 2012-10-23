@@ -178,7 +178,7 @@ class BarChart extends Scenario
                                     marginBottom: 150
                                 },
                                 credits: {
-                                    href: 'http://scoreboard.lod2.eu/',
+                                    href: 'http://ec.europa.eu/digital-agenda/en/graphs/',
                                     text: 'European Commission, Digital Agenda Scoreboard',
                                     position: {
                                         align: 'right',

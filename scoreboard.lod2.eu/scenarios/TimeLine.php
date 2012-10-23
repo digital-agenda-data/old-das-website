@@ -157,7 +157,7 @@ class TimeLine extends Scenario
                                                 marginBottom: 100
                                         },
                                         credits: {
-                                                href: 'http://scoreboard.lod2.eu/',
+                                                href: 'http://ec.europa.eu/digital-agenda/en/graphs/',
                                                 text: 'European Commission, Digital Agenda Scoreboard',
                                                 position: {
                                                         align: 'right',

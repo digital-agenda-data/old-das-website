@@ -326,7 +326,7 @@ class CountryProfile extends Scenario
                     $output .= '</tr>';
                 }
             }
-            $output .= '<tr style="background-color:lightgrey"><td colspan=6 style="text-align:right"><a href="http://scoreboard.lod2.eu/">European Commision, Digital Agenda Scoreboard</a></td></tr>';
+            $output .= '<tr style="background-color:lightgrey"><td colspan=6 style="text-align:right"><a href="http://ec.europa.eu/digital-agenda/en/graphs">European Commision, Digital Agenda Scoreboard</a></td></tr>';
             $output .= '</table>';
 
             //create chart --> reverse array orders due to the chart logic
@@ -359,7 +359,7 @@ class CountryProfile extends Scenario
 
 					    },
                         credits: {
-                                href: 'http://scoreboard.lod2.eu/',
+                                href: 'http://ec.europa.eu/digital-agenda/en/graphs/',
                                 text: 'European Commission, Digital Agenda Scoreboard',
                                 position: {
                                         align: 'right',

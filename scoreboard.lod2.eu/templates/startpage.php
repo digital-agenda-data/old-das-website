@@ -1,7 +1,7 @@
       <div>
         <h1 style="float:left;width:65%">A Visualisation tool for selected indicators of the Digital Agenda Scoreboard</h1>
         <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
-            <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em" />
+            <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em;border-style: none" />
         </a>
 <div style="clear:both" />
       </div>

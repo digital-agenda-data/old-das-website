@@ -4,7 +4,7 @@
                 <?php echo $content['title']; ?>
             </h2>
             <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
-                <img src="images/hp-eda-logo.jpg" style="width:15em;float:right" />
+                <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;border-style: none" />
             </a>
             <div style="clear:both" />
         </div>

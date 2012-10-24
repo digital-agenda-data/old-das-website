@@ -92,7 +92,7 @@
             <img src = "images/countryprofile.png" style="width:7em; border:0px;"/>
         </a>
         <a href="http://ec.europa.eu/digital-agenda/en/scoreboard">
-            <img src="images/hp-eda-logo.jpg" style="float:right;"/>
+            <img src="images/hp-eda-logo.jpg" style="float:right;border-style: none"/>
         </a>
     </p>
   </div>

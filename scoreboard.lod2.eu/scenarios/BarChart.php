@@ -188,7 +188,7 @@ class BarChart extends Scenario
                                     }
                                 },
                                 title: {
-                                    text: '".substr($label,0,strpos($label," ", 50))."<br>".substr($label,strpos($label," ", 50))."',
+                                    text: '".substr($label,0,strpos($label," ", 110))."<br>".substr($label,strpos($label," ", 110))."',
                                     style: {
                                         color: '#000000',
                                         fontWeight: 'bold', 

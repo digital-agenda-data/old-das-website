@@ -3,7 +3,6 @@ body {
     margin-bottom:0em;
 }
 
-
 .page_margins {
     padding-bottom:2em;
     margin-bottom:0em;
@@ -67,17 +66,153 @@ h2 {
     height:1.25em;
 }
 
-@media print
-{
-.Page { page-break-after: always; }
-@page {
-size: landscape
-margin: 10%;
-}
+@media print {
+	.Page { 
+		page-break-after: always; 
+	}
+
+	@page {
+		size: landscape;
+		margin: 10%;
+	}
 }
 
-
-{
 .hidetable {
     display: none;
 }
+
+
+/* overrides */
+.layout {
+	overflow: hidden;
+}
+
+.layout-wrapper {
+	outline: 1px solid red;
+}
+
+body #header {
+	margin-bottom: 0px; /* overrides layout.css line 59 */
+}
+
+table.available-graphs {
+	margin-right: 2em;
+	border: 0px;
+}
+
+table.available-graphs td.description {
+	vertical-align: top; 
+	padding-top:1em;
+}
+
+table.available-graphs td, 
+table.available-graphs th, 
+table.available-graphs tr {
+	border: 0px;
+}
+
+table.available-graphs img {
+	max-width: 221px; /*  overrides bootstrap.min.css line 10 */
+}
+
+p.blue-box {
+	padding:1em; 
+	background-color:#E1F0F7; 
+	vertical-align:top;
+	margin-top: 14px;
+}
+
+.layout-footer h2 {
+	font-weight: normal;
+}
+
+.boxes-box-content p {
+	margin-bottom: 0px;
+}
+
+table { /* overrides ec_default.css */
+	border: 0px;
+}
+
+td, th, tr { /* overrides ec_default.css */
+	padding: 0;
+	border: 0px;
+}
+
+.lod2-logo {
+	width: 8em; 
+	float: right;
+	margin: 0em 4em 0em 4em; 
+	border:0px;
+}
+
+
+/* blocks copied from bootstrap.min.css 
+	in order to avoid loading yet another stylesheet */
+.nav {
+	list-style: none;
+}
+
+.nav-tabs::before, 
+.nav-pills::before, 
+.nav-tabs::after, 
+.nav-pills::after {
+	display: table;
+	content: "";
+}
+
+.nav-tabs::after, 
+.nav-pills::after {
+	clear: both;
+}
+
+.nav.nav-pills li {
+	line-height: 18px;
+}
+
+.nav-tabs .dropdown-menu, .nav-pills .dropdown-menu {
+	border-width: 1px;
+}
+
+.dropdown-menu {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index: 1000;
+	float: left;
+	min-width: 160px;
+	_width: 160px;
+	padding: 4px 0;
+	margin: 0;
+	list-style: none;
+	background-color: white;
+	border-color: #CCC;
+	border-color: rgba(0, 0, 0, 0.2);
+	border-style: solid;
+	border-width: 1px;
+	-webkit-border-radius: 0 0 5px 5px;
+	-moz-border-radius: 0 0 5px 5px;
+	border-radius: 0 0 5px 5px;
+	-webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+	-webkit-background-clip: padding-box;
+	-moz-background-clip: padding;
+	background-clip: padding-box;
+}
+
+.dropdown-menu li > a:hover, 
+.dropdown-menu .active > a, 
+.dropdown-menu .active > a:hover {
+	text-decoration: none;
+}
+
+.dropdown-menu a {
+	display: block;
+	clear: both;
+	font-weight: normal;
+	white-space: nowrap;
+}
+/* end blocks copied from bootstrap.min.css */
+
+

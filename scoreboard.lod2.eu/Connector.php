@@ -24,9 +24,9 @@ class Connector {
 #        $password = "xCcJMCrZGbFyV6mh";
 
         $host   = "localhost";
-        $dbname = "dginfso";
-        $username = "root";
-        $password = "root";
+        $dbname = "scoreboard";
+        $username = "scoreboard";
+        $password = "scoreboard";
 
         $logfile = "logs/scoreboard.log";
         $dsn = "mysql:dbname=".$dbname.";host=".$host;

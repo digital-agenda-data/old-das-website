@@ -9,95 +9,85 @@
             <div style="clear:both"></div>
         </div>
 
-     <div class="section">   
-        <p style= "padding-right:2em"><?php echo $content['description']; ?></p>
+		 <div class="section">   
+			<p style= "padding-right:2em"><?php echo $content['description']; ?></p>
 
-        <div class="section-content" id="chart">
-            <table style="width:100%;">
-              <tr>
-                <td><?php echo $content['facets']; ?></td>
-                <td style="vertical-align:top">
-<?php if(empty($content['error'])){ ?>
-                    <a href="index.php?export=csv&scenario=<?php echo $content['scenario']; ?><?php echo '&'.$content['exportLinkParameter']; ?>">Export CSV</a>
-                    <a href="index.php?export=rdf&scenario=<?php echo $content['scenario']; ?><?php echo '&'.$content['exportLinkParameter']; ?>">Export RDF</a><br />
-                    <a href="#indicators">Definitions and scopes</a><br />
-                    <!-- <a href="#scenarios">Further Exploration</a><br /> -->
-<?php } ?>
-			    <!-- AddThis Button BEGIN -->
-			    <div style="background-color:white;margin-top:0.6em;margin-bottom:0.6em;padding:0.3em;padding-bottom:0.1em;border:1px dotted #fefefe">
-			    
-			     <div class="addthis_toolbox_menu addthis_default_style">
-			       <b style="float:left;margin-right:1em;margin-left:1em">Share:</b>
-			       <a class="addthis_button_facebook" style="margin-right:1em"></a>
-			       <a class="addthis_button_twitter" style="margin-right:1em"></a>
-			       <a href="http://www.addthis.com/bookmark.php?v=250&username=xa-4cb32783294785a7" class="addthis_button_compact" style="margin-right:1em"></a>
-			     </div>
-			     <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4cb32783294785a7"></script>
-			<div style="clear:both"></div>
+			<div class="section-content" id="chart">
+				<table style="width:100%;">
+				  <tr>
+					<td><?php echo $content['facets']; ?></td>
+					<td style="vertical-align:top">
+	<?php if(empty($content['error'])){ ?>
+						<a href="index.php?export=csv&scenario=<?php echo $content['scenario']; ?><?php echo '&'.$content['exportLinkParameter']; ?>">Export CSV</a>
+						<a href="index.php?export=rdf&scenario=<?php echo $content['scenario']; ?><?php echo '&'.$content['exportLinkParameter']; ?>">Export RDF</a><br />
+						<a href="#indicators">Definitions and scopes</a><br />
+						<!-- <a href="#scenarios">Further Exploration</a><br /> -->
+	<?php } ?>
+					<!-- AddThis Button BEGIN -->
+					<div style="background-color:white;margin-top:0.6em;margin-bottom:0.6em;padding:0.3em;padding-bottom:0.1em;border:1px dotted #fefefe">
+						 <div class="addthis_toolbox_menu addthis_default_style">
+							   <b style="float:left;margin-right:1em;margin-left:1em">Share:</b>
+							   <a class="addthis_button_facebook" style="margin-right:1em"></a>
+							   <a class="addthis_button_twitter" style="margin-right:1em"></a>
+							   <a href="http://www.addthis.com/bookmark.php?v=250&username=xa-4cb32783294785a7" class="addthis_button_compact" style="margin-right:1em"></a>
+						 </div>
+						 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4cb32783294785a7"></script>
+						<div style="clear:both"></div>
+					</div>
+					 <!-- AddThis Button END --> 
+					</td>
+				  </tr>
+				</table>              
 			</div>
-			     <!-- AddThis Button END --> 
-                </td>
-              </tr>
-            </table>              
-        </div>
+
+			<div id="colX">
+			  <div id="col1_content" class="clearfix">
+				<!-- add your content here -->
+				<?php if(empty($content['error'])){ ?>
+					<div id="swstack" class="section">
+						<?php echo $content['chart']; ?>
+					</div>
+
+				  <div style="clear:both"></div>
+
+					<div class="section-content" id="indicators">
+					  <h2>Definitions and scopes:</h2>
+					  <?php if($scenario != 4) echo $content['metadata']['list']; ?>
+					  <p><a href="index.php?page=indicators">Consult the list of available indicators, their definition and sources.</a></p>
+					</div>
+
+				<?php } else {?>
+					<div id="swstack" class="section">
+					</div>
+					<div class="message">
+						<?php echo $content['error']; ?>
+					</div>
+				<?php } ?>
+
+			  </div> <!-- /#col1_content -->
+			</div> <!-- /#colX -->
 
 
+		 </div> <!-- end div.section -->
+    </div> <!-- end div.maincontent -->
 
-
-
-
-        <div id="colX">
-          <div id="col1_content" class="clearfix">
-            <!-- add your content here -->
-            <?php if(empty($content['error'])){ ?>
-                <div id="swstack" class="section">
-                    <?php echo $content['chart']; ?>
-                </div>
-
-              <div style="clear:both"></div>
-
-                <div class="section-content" id="indicators">
-                  <h2>Definitions and scopes:</h2>
-                  <?php if($scenario != 4) echo $content['metadata']['list']; ?>
-                  <p><a href="index.php?page=indicators">Consult the list of available indicators, their definition and sources.</a></p>
-                </div>
-
-            <?php } else {?>
-                <div id="swstack" class="section">
-                </div>
-                <div class="message">
-                    <?php echo $content['error']; ?>
-                </div>
-            <?php } ?>
-
-          </div> <!-- /#col1_content -->
-        </div> <!-- /#colX -->
-
-
-
-
-
-
-      </div>
-    </div>
-  </div>
 <?php $indSelection = ($content['export']['parameters']['indicators[]']) ? "&indicators[]=".$content['export']['parameters']['indicators[]'] : ""; ?>
   <div id="scenarios">
     <h4>To swap charts, click one of the icons:</h4>
     <p>
-        <a href="index.php" alt="Back Home" style="float:top">
+        <a href="index.php" title="Back Home">
             <img src="images/home.png" class="preview-scenarios" alt="" />
         </a>
-        <a href="index.php?scenario=1<?php echo $indSelection ?>" alt="Barchart Scenario">
+        <a href="index.php?scenario=1<?php echo $indSelection ?>" title="Barchart Scenario">
             <img src="images/barchart.png" class="preview-scenarios" alt="" />
         </a>
-        <a href="index.php?scenario=2<?php echo $indSelection ?>" alt="TimeLine-chart Scenario">
+        <a href="index.php?scenario=2<?php echo $indSelection ?>" title="TimeLine-chart Scenario">
             <img src="images/timeline.png" class="preview-scenarios" alt="" />
         </a>
-        <a href="index.php?scenario=3<?php echo $indSelection ?>" alt="Scatter plot">
+        <a href="index.php?scenario=3<?php echo $indSelection ?>" title="Scatter plot">
             <img src="images/scatterplott.png" class="preview-scenarios" alt="" />
         </a>
-        <a href="index.php?scenario=4" alt="Country profile">
+        <a href="index.php?scenario=4" title="Country profile">
             <img src="images/countryprofile.png" class="preview-scenarios" alt="" />
         </a>
         <a href="http://ec.europa.eu/digital-agenda/en/scoreboard">

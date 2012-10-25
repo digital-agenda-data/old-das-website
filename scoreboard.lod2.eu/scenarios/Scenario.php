@@ -239,7 +239,7 @@ class Scenario {
                 
             }
         }
-        $indicatorsSelector = '<select onChange="this.form.submit()" name='.$formName.'[] size="1" style="width:auto;min-width:33em; background-color:#fff; border:1px solid #ababab;">';
+        $indicatorsSelector = '<select onchange="this.form.submit()" name='.$formName.'[] size="1" style="width:auto;min-width:33em; background-color:#fff; border:1px solid #ababab;">';
         $indicatorsSelector .= implode("\n", $indicatorGuiElements);
         $indicatorsSelector .= '</select>';
 	if (empty($selectedIndicators)) {

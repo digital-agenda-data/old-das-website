@@ -104,6 +104,10 @@ body #header {
 	margin: 1em 0em 2em 0em; 
 }
 
+#scenarios a:hover {
+	text-decoration: none;
+}
+
 #col1_content { /* overrides layout.css line 280 */
 	padding: 0px;
 }

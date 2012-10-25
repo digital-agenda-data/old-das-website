@@ -290,14 +290,14 @@ class CountryProfile extends Scenario
 		                $n = count($countryset);
 		                $set = false;
 		                $temp = array_values($countryset);
-		                $output .= '<tr><td>'.$longLabel.'</td><td><center>'.(round(((strpos($unit, '%') === false) && (strpos($unit, '/') === false) ? $avg : $avg*100),1)).'</center></td>';
+		                $output .= '<tr><td>'.$longLabel.'</td><td style="text-align:center;">'.(round(((strpos($unit, '%') === false) && (strpos($unit, '/') === false) ? $avg : $avg*100),1)).'</td>';
 
 		                if($value != NULL) {
 		                    for($q = 1; $q<4; $q++) { //calculate quartile
 		                        if ($q == 1 || $q == 3) {
-		                            $style = 'style="background-color:#dfdfdf"';
+		                            $style = 'style="background-color:#dfdfdf; text-align:center;"';
 		                        } else {
-		                            $style = 'style="background-color:#efefef"';
+		                            $style = 'style="background-color:#efefef; text-align:center;"';
 		                        }
 	                        
 		                        if($n % 2 != 0) {
@@ -307,20 +307,20 @@ class CountryProfile extends Scenario
 	                            }
 
 	                            if($value < $quartile[$variable][$brkdown][$unit][$q] && !$set) {
-		                            $output .= '<td '.$style.'><center><b>'.$roundedValue.'</b></center></td>';
+		                            $output .= '<td '.$style.'><b>'.$roundedValue.'</b></td>';
         	                        $set = true;
         	                    } else {
                                     $output .= '<td '.$style.'></td>';
                                 }
 	                        }
 		                    if($value >= $quartile[$variable][$brkdown][$unit][3] && !$set) {
-	                            $output .= '<td style="background-color:#efefef"><center><b>'.$roundedValue.'</b></center></td>';
+	                            $output .= '<td style="background-color:#efefef; text-align:center;"><b>'.$roundedValue.'</b></td>';
 	                            $set = true;
 		                    } else {
 	                            $output .= '<td style="background-color:#efefef"></td>';
 	                        }
 		                } else {
-	                        $output .= '<td style="background-color:#efefef;" colspan=4><center>'.$roundedValue.'<c/enter></td>';
+	                        $output .= '<td style="background-color:#efefef; text-align:center;" colspan=4>'.$roundedValue.'</td>';
 	                    }
                     }
                     $output .= '</tr>';

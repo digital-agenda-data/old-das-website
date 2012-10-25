@@ -9,7 +9,7 @@
 
         <div class="maincontent">
             <div class="section">
-                <div class="section-content" style= "margin-right:2em; padding:1em; background-color:#E1F0F7">
+                <div class="section-content" style= "padding:1em; background-color:#E1F0F7">
                     In addition to browsing the data with the help of the <a href="index.php">four visualisation tools</a> 
                     (where you can download the data used to create the chart in CSV and RDF), you are able to download the 
                     whole database in XLS, CSV and SQL. In the near future the complete database will be provided as a graph in 
@@ -94,7 +94,7 @@
             </div>
         </div>
     </div>
-      <div style="margin:1em 1em 2em 0em;" id="scenarios">
+      <div id="scenarios">
         <h4>To explore the data in scoreboard, click one of the icons:</h4>
         <p>
         <a href="index.php" alt="Back Home" style="float:top"><img src = "images/home.png" class="preview-scenarios" alt="" /></a>

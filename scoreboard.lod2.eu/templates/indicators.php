@@ -12,18 +12,18 @@
                the scope and the definition of each indicator. For more details, click on the links in the table or explore the whole database.
             </p>
             <div class="section">
-                <div class="section-content" style= "margin-right:2em; padding:1em; background-color:#E1F0F7">
+                <div class="section-content" style="padding:1em; background-color:#E1F0F7">
                     <?php foreach (array_keys($content["data"]) as $group) { ?>
                         <a href="#<?php echo md5($group)?>"><?php echo $group ?></a><br />
                     <?php } ?>
                 </div>
-                <div style="padding-right:2em;margin-top:2em;">
+                <div style="margin-top:2em;">
                     <?php echo $content['table'] ?>
                 </div>
             </div>
         </div>
 </div> <!-- end div#page? -->
-      <div style="margin:1em 1em 2em 0em;" id="scenarios">
+      <div id="scenarios">
         <h4>To explore the data in scoreboard, click one of the following icons:</h4>
         <p>
 		      <a href="index.php" alt="Back Home" style="float:top"><img src="images/home.png" class="preview-scenarios" alt="" /></a>

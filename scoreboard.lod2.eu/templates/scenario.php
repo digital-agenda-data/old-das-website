@@ -12,7 +12,7 @@
      <div class="section">   
         <p style= "padding-right:2em"><?php echo $content['description']; ?></p>
 
-        <div class="section-content" style= "margin-right:2em;height: 1" id="chart">
+        <div class="section-content" id="chart">
             <table style="width:100%;">
               <tr>
                 <td><?php echo $content['facets']; ?></td>
@@ -82,7 +82,7 @@
     </div>
   </div>
 <?php $indSelection = ($content['export']['parameters']['indicators[]']) ? "&indicators[]=".$content['export']['parameters']['indicators[]'] : ""; ?>
-  <div style="margin:1em 1em 2em 0em;" id="scenarios">
+  <div id="scenarios">
     <h4>To swap charts, click one of the icons:</h4>
     <p>
         <a href="index.php" alt="Back Home" style="float:top">

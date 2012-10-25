@@ -96,6 +96,26 @@ body #header {
 	margin-bottom: 0px; /* overrides layout.css line 59 */
 }
 
+.page {
+	padding-left: 0px;
+}
+
+#scenarios {
+	margin: 1em 0em 2em 0em; 
+}
+
+#col1_content { /* overrides layout.css line 280 */
+	padding: 0px;
+}
+
+.section-content {
+	margin-right: 0px;
+}
+
+.maincontent img {
+	margin-right: 0px; /* overrides content.css 143 */
+}
+
 table.available-graphs {
 	margin-right: 2em;
 	border: 0px;
@@ -121,6 +141,12 @@ p.blue-box {
 	background-color:#E1F0F7; 
 	vertical-align:top;
 	margin-top: 14px;
+}
+
+.layout-footer { /* overrides ec_default.css line 612 */
+	width: 980px;
+	margin: 32px auto 0px;
+	float: none;
 }
 
 .layout-footer h2 {

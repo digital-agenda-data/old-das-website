@@ -1,11 +1,14 @@
+
+
 body {
-    padding-bottom:0em;
-    margin-bottom:0em;
+	padding-bottom:0em;
+	margin-bottom:0em;
+	background: #fff;
 }
 
 .page_margins {
-    padding-bottom:2em;
-    margin-bottom:0em;
+	padding-bottom:2em;
+	margin-bottom:0em;
 }
 
 h1 {
@@ -82,13 +85,11 @@ h2 {
 }
 
 
-/* overrides */
+/* OVERRIDES */
 .layout {
 	overflow: hidden;
-}
-
-.layout-wrapper {
-	outline: 1px solid red;
+	font-size: 100%; /* overrides ec.css line 54 */
+	padding: 0px;
 }
 
 body #header {
@@ -146,8 +147,13 @@ td, th, tr { /* overrides ec_default.css */
 	border:0px;
 }
 
+img.preview-scenarios {
+	width: 7em; 
+	border: 0px;
+}
 
-/* blocks copied from bootstrap.min.css 
+
+/* BLOCKS copied from bootstrap.min.css 
 	in order to avoid loading yet another stylesheet */
 .nav {
 	list-style: none;

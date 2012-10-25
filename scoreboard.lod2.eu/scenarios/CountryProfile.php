@@ -423,10 +423,10 @@ class CountryProfile extends Scenario
                         tooltip: {
 						    formatter: function(){
 					            if (this.point.y < 0) {
-							        return '<b>'+ this.point.category +'</b><br/>'+
+							        return '&lt;b&gt;'+ this.point.category +'&lt;/b&gt;&lt;br/&gt;'+
 							        	Math.round(this.point.y*100) + '% of the gap between EU27 and the MIN observed values';
 						        } else {
-							        return '<b>'+ this.point.category +'</b><br/>'+
+							        return '&lt;b&gt;'+ this.point.category +'&lt;/b&gt;&lt;br/&gt;'+
 							        	Math.round(this.point.y*100) + '% of the gap between EU27 and the MAX observed values';
 						        }
 						    }

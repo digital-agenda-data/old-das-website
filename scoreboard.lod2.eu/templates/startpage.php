@@ -1,6 +1,6 @@
       <div>
         <h1 style="float:left;width:65%">A Visualisation tool for selected indicators of the Digital Agenda Scoreboard</h1>
-        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard">
             <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em;border-style: none" alt="" />
         </a>
 				<div style="clear:both"></div>
@@ -16,7 +16,7 @@
         	<tr>
 
          		<td>
-            	<a href="index.php?scenario=1"><img src = "images/barchart.png" style="border:0px"/></a>
+            	<a href="index.php?scenario=1"><img src="images/barchart.png" style="border:0px" alt="" /></a>
             </td>
 
             <td class="description">
@@ -28,7 +28,7 @@
 
           <tr>
           	<td>
-            	<a href="index.php?scenario=2"><img src = "images/timeline.png" style="border:0px" /></a>
+            	<a href="index.php?scenario=2"><img src="images/timeline.png" style="border:0px" alt="" /></a>
            	</td>
 
             <td class="description">
@@ -39,7 +39,7 @@
 
           <tr>
           	<td>
-            	<a href="index.php?scenario=3"><img src = "images/scatterplott.png" style="border:0px"/></a>
+            	<a href="index.php?scenario=3"><img src="images/scatterplott.png" style="border:0px" alt="" /></a>
             </td>
 
             <td class="description">
@@ -50,7 +50,7 @@
 
           <tr>
           	<td>
-            	<a href="index.php?scenario=4"><img src = "images/countryprofile.png" style="border:0px"/></a>
+            	<a href="index.php?scenario=4"><img src="images/countryprofile.png" style="border:0px" alt="" /></a>
             </td>
 
             <td class="description">

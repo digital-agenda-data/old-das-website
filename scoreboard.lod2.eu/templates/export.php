@@ -1,10 +1,10 @@
 <div id="page">
 <div>
     <h1 style="float:left">Exploring the data on your own</h1>
-        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard" style="">
-            <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em;border-style: none" />
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard">
+            <img src="images/hp-eda-logo.jpg" style="width:15em;float:right;padding-top:1.775em;border-style: none" alt="" />
         </a>
-<div style="clear:both" />
+<div style="clear:both"></div>
       </div>
 
         <div class="maincontent">
@@ -14,7 +14,7 @@
                     (where you can download the data used to create the chart in CSV and RDF), you are able to download the 
                     whole database in XLS, CSV and SQL. In the near future the complete database will be provided as a graph in 
                     RDF for download. Furthermore a Linked Data -/ SPARQL endpoint to explore the data directly will be created.
-                    <br><br>
+                    <br /><br />
                     The database with the selected indicators of the Digital Agenda Scoreboard is made of three tables:
                     <ul>
                       <li> a <b>data table</b>, with codes for the indicators, countries, years and values</li>
@@ -97,12 +97,12 @@
       <div style="margin:1em 1em 2em 0em;" id="scenarios">
         <h4>To explore the data in scoreboard, click one of the icons:</h4>
         <p>
-        <a href="index.php" alt="Back Home" style="float:top"><img src = "images/home.png" style="width:7em; border:0px;"/></a>
-        <a href="index.php?scenario=1" alt="Barchart Scenario"><img src = "images/barchart.png" style="width:7em; border:0px;"/></a>
-        <a href="index.php?scenario=2" alt="TimeLine-chart Scenario"><img src = "images/timeline.png" style="width:7em; border:0px;"/></a>
-        <a href="index.php?scenario=3" alt="Scatter plot"><img src = "images/scatterplott.png" style="width:7em; border:0px;"/></a>
-        <a href="index.php?scenario=4" alt="Country profile"><img src = "images/countryprofile.png" style="width:7em; border:0px;"/></a>
-        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard"><img src="images/hp-eda-logo.jpg" style="float:right;"/></a>
+        <a href="index.php" alt="Back Home" style="float:top"><img src = "images/home.png" class="preview-scenarios" alt="" /></a>
+        <a href="index.php?scenario=1" alt="Barchart Scenario"><img src = "images/barchart.png" class="preview-scenarios" alt="" /></a>
+        <a href="index.php?scenario=2" alt="TimeLine-chart Scenario"><img src = "images/timeline.png" class="preview-scenarios" alt="" /></a>
+        <a href="index.php?scenario=3" alt="Scatter plot"><img src = "images/scatterplott.png" class="preview-scenarios" alt="" /></a>
+        <a href="index.php?scenario=4" alt="Country profile"><img src = "images/countryprofile.png" class="preview-scenarios" alt="" /></a>
+        <a href="http://ec.europa.eu/digital-agenda/en/scoreboard"><img src="images/hp-eda-logo.jpg" style="float:right;" alt="" /></a>
         </p>
       </div>
 </div>

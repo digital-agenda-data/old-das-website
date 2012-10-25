@@ -188,7 +188,7 @@ class BarChart extends Scenario
                                     }
                                 },
                                 title: {
-                                    text: '".substr($label,0,strpos($label," ", 50))."<br>".substr($label,strpos($label," ", 50))."',
+                                    text: '".substr($label,0,strpos($label," ", 50))."&lt;br /&gt;".substr($label,strpos($label," ", 50))."',
                                     style: {
                                         color: '#000000',
                                         fontWeight: 'bold', 
@@ -226,7 +226,7 @@ class BarChart extends Scenario
                                 tooltip: {
                                     formatter: function() {
                                             return '<b>'+
-                                                    this.x +'</b><br>".$this->parameters['year'].": '+ Math.round(this.y*10)/10 + ' ".$unit."';
+                                                    this.x +'&lt;/b&gt; &lt;br /&gt;".$this->parameters['year'].": '+ Math.round(this.y*10)/10 + ' ".$unit."';
                                     }
                                 },
                                 plotOptions: {

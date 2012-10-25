@@ -22,7 +22,7 @@
 							<div id="boxes-box-haveyoursaybox" class="boxes-box">
 								<div class="boxes-box-content">
 									<p><a href="http://daa.ec.europa.eu/">
-									<img border="0" src="https://ec.europa.eu/digital-agenda/sites/digital-agenda/themes/dg_connect/images/dae-button.png"  alt="" />
+									<img src="https://ec.europa.eu/digital-agenda/sites/digital-agenda/themes/dg_connect/images/dae-button.png" alt="" />
 									</a></p>
 								</div>
 							</div>  
@@ -34,7 +34,8 @@
 			</div>
 			<!-- end footer -->
 
-		</div> <!-- end div#layout? -->
+		</div> 
+		<!-- end div#layout -->
 
 	</body>
 </html>

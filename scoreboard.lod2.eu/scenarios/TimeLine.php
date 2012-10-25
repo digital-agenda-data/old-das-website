@@ -167,7 +167,7 @@ class TimeLine extends Scenario
                                                 }
                                         },
                                         title: {
-                                                text: '".substr($label,0,strpos($label," ", 50))."<br>".substr($label,strpos($label," ", 50))."',
+                                                text: '".substr($label,0,strpos($label," ", 50))."<br />".substr($label,strpos($label," ", 50))."',
                                                 x: -20,
                                                 margin: 30,
                                                 style: {

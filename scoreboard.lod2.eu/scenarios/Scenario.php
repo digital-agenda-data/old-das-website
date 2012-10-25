@@ -207,7 +207,7 @@ class Scenario {
             $indicatorList = array_merge($indicatorList, $indicators);
             if(!$groupsOnly) { //single indicator selection
             
-                $indicatorGuiElements[] = '<optgroup label="'.$indicatorGroup.'">\n';
+                $indicatorGuiElements[] = '<optgroup label="'.$indicatorGroup.'">';
                 foreach ($indicators as $indicator) {
                     $check = false;
                     if( in_array($indicator['variable'].' '.$indicator['brkdown'].' '.$indicator['unit'], $this->parameters[$formName]) && $select < $maxselect) {
@@ -219,10 +219,10 @@ class Scenario {
                         <option  
                         value="'.$indicator['variable'].' '.$indicator['brkdown'].' '.$indicator['unit'].'"'. 
                         ($check ? ' selected="selected"' : '').'>
-                        &nbsp;'.$indicator['shortLabel'].'</option>\n';
+                        &nbsp;'.$indicator['shortLabel'].'</option>';
                     $indicatorGuiElements[] = $guiElement;
                 }
-                $indicatorGuiElements[] = '</optgroup>\n';
+                $indicatorGuiElements[] = '</optgroup>';
             } else { //group selection of indicators
                 $check = false;
                 if(( in_array($indicatorGroup, $this->parameters[$formName])) && $select < $maxselect) {
@@ -234,7 +234,7 @@ class Scenario {
                         <option  
                         value="'.urlencode($indicatorGroup).'"'.
                         ($check ? ' selected' : '').'>
-                        &nbsp;'.$indicatorGroup.'</option>\n';          
+                        &nbsp;'.$indicatorGroup.'</option>';          
 
                 
             }
@@ -309,7 +309,7 @@ class Scenario {
                 if(!isset($year)) {
                     $year = $row;
                 }
-                $yearSelector .= '<nobr><input type="radio" name="year" value="'.$row.'" '.($year==$row ? 'checked="checked"':'').' onclick="this.form.submit()" />&nbsp;'.$row.'&nbsp;&nbsp;</nobr> ';
+                $yearSelector .= '<input type="radio" name="year" value="'.$row.'" '.($year==$row ? 'checked="checked"':'').' onclick="this.form.submit()" />&nbsp;'.$row.'&nbsp;&nbsp; ';
             }
             return array("yearSelector" => $yearSelector, "year" => $year);
         } #else {
@@ -380,12 +380,12 @@ class Scenario {
 #        if ($addAllCountries) {
 #            if(in_array("allCountries", $this->parameters['countries'])) {
 #
-#                $countryGuiElements[] = '<option value="allCountries" selected="selected" >&nbsp;Select All Countries</option>\n';
+#                $countryGuiElements[] = '<option value="allCountries" selected="selected" >&nbsp;Select All Countries</option>';
 #                $countries = $countriesall;
 #                $this->parameters['countries'] = $countriesall;
 #            } 
 #            else {
-#                $countryGuiElements[] = '<option value="allCountries" >&nbsp;Select All Countries</option>\n';
+#                $countryGuiElements[] = '<option value="allCountries" >&nbsp;Select All Countries</option>';
 #           }
 #        }
 
@@ -402,14 +402,14 @@ class Scenario {
                 $check = true;
             }
 
-            #$countrySelector .= ' <nobr><input type="'.($multiple == true ? 'checkbox' : 'radio').'" name="countries[]" value="'.$index.'" '.($check == true ? 'checked="checked"' : '').' onchange="this.form.submit()" /> '.$value.' ('.$index.')</nobr>&nbsp;&nbsp;  ';
+            #$countrySelector .= ' <input type="'.($multiple == true ? 'checkbox' : 'radio').'" name="countries[]" value="'.$index.'" '.($check == true ? 'checked="checked"' : '').' onchange="this.form.submit()" /> '.$value.' ('.$index.')&nbsp;&nbsp;  ';
 
             if (!$multiple) {
                 $countryGuiElements[] = '
                  <option  
                  value="'.$index.'"'. 
                  ($check ? ' selected="selected"' : '').'>
-                 &nbsp;'.$value.' ('.$index.')</option>\n';
+                 &nbsp;'.$value.' ('.$index.')</option>';
             } else {
                 $eventHandler = 'onclick="this.form.submit()"';
                 if ($withoutEventHandling == true) {
@@ -419,7 +419,7 @@ class Scenario {
                 $countryGuiElements[] = '
                     <input type="checkbox" name="countries[]" '.$eventHandler.'
                         value="'.$index.'" '.
-                        ($check ? ' checked="checked"' : '').'> &nbsp;'.$value.' ('.$index.')<br>';
+                        ($check ? ' checked="checked"' : '').' /> &nbsp;'.$value.' ('.$index.')<br />';
             }
         }
         $cElements = implode("\n", $countryGuiElements);

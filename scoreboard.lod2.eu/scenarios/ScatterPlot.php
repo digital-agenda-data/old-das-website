@@ -280,7 +280,7 @@ class ScatterPlot extends Scenario
                                         tooltip: {
                                                 formatter: function() {
                                                 return '<b>'+ this.series.name +'</b><br/>x: '+
-                                                                this.x +' ".$labels['xunit'].",<br>y: '+ this.y +' ".$labels['yunit']."';
+                                                                this.x +' ".$labels['xunit'].",&lt;br /&gt;y: '+ this.y +' ".$labels['yunit']."';
                                                 }
                                         },
                                         legend: {

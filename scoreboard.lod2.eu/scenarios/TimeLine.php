@@ -74,13 +74,13 @@ class TimeLine extends Scenario
         $export['parameters']['countries[]'] = implode("&countries[]=", array_keys($countries));
         
         $dataset = array();
-        $years = array(0 => "2002",1 => "2003", 2=>"2004",3=>"2005",4=>"2006",5=>"2007",6=>"2008",7=>"2009",8=>"2010", 9=>"2011");
+        $years = array(0 => "2002",1 => "2003", 2=>"2004",3=>"2005",4=>"2006",5=>"2007",6=>"2008",7=>"2009",8=>"2010", 9=>"2011", 10=>"2012");
         $series = array();
         
         //csv export
         $export['name'] = "TimeLineChart-".substr($label,0,20)."-".implode('-', array_keys($countries));
 #        $export['head'] = $label."\r\nCountry;2004;2005;2006;2007;2008;2009;2010\r\n";
-        $export['head'] = array("Indicator","Country","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011");
+        $export['head'] = array("Indicator","Country","2002","2003","2004","2005","2006","2007","2008","2009","2010","2011","2012");
         $export['data'] = "";
         $dataset = array();
         

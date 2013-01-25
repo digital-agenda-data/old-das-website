@@ -72,7 +72,7 @@
                 <p>
                     The published digital scoreboard RDF data can be queried online via the 
                     <a href="http://digital-agenda-data.eu/ontowiki/index.php/queries/editor?m=http%3A%2F%2Fdata.lod2.eu%2Fscoreboard%2F">SPARQL editor</a> (human readable) or 
-                    <a href="http://virtuoso.scoreboard.edw.ro/sparql/">SPARQL endpoint </a> (for machines regarding the <a href="http://www.w3.org/TR/rdf-sparql-protocol/">SPARQL protocol for RDF</a>).
+                    <a href="http://digital-agenda-data.eu/sparql/">SPARQL endpoint </a> (for machines regarding the <a href="http://www.w3.org/TR/rdf-sparql-protocol/">SPARQL protocol for RDF</a>).
                     This SPARQL endpoint offers a public service to the statistical data allowing anyone to build applications based on the most recent
                     data.
                 </p>
